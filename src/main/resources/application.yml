@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: franquicias
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/franquicias_db
+      auto-index-creation: true
