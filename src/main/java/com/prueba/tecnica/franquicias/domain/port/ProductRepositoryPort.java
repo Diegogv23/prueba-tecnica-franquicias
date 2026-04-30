@@ -5,8 +5,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface ProductRepositoryPort {
-    Mono<Product> save(Product product); // Guardar o actualizar
-    Mono<Void> deleteById(String id);    // Eliminar por ID
-    Mono<Product> findById(String id);   // Buscar uno solo
-    Mono<Product> findTopByBranchIdOrderByStockDesc(String branchId);
+    Mono<Product> guardar(Product producto);
+    Mono<Void> eliminar(String id);
+    Mono<Product> actualizarStock(String id, Integer nuevoStock);
+    Mono<Product> actualizarNombre(String id, String nuevoNombre);
+    Mono<Product> buscarProductoConMasStock(String sucursalId);
 }
