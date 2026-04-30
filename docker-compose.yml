@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: franquicias_db
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ./uptime-kuma-data:/app/data
     ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_DATABASE=franquicias_db
+      - "3001:3001"
     restart: always

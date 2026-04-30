@@ -5,3 +5,12 @@ spring:
     mongodb:
       uri: mongodb+srv://diegogv231200:qxPkQ4HYuvYhgoS9@cluster0.gkzwslv.mongodb.net/franquiciasDB?appName=Cluster0
       auto-index-creation: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always

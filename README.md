@@ -4,7 +4,7 @@ API REST para la gestión de franquicias, sucursales y productos. Desarrollada c
 ## Requisitos
 Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en tu equipo:
 *   **Java 17**: Necesario para ejecutar el núcleo de la aplicación.
-*   **Docker Desktop**: Para levantar la base de datos de manera automática.
+*   **Conexión a Internet**: Requerida para que la aplicación se comunique con el clúster de base de datos alojado en la nube.
 *   **Git**: Para clonar el proyecto en tu máquina local.
 
 ---
@@ -27,17 +27,9 @@ git clone [https://github.com/Diegogv23/prueba-tecnica-franquicias.git](https://
 
 ##  2. Cómo Ejecutar la Aplicación
 
-He configurado todo para que el despliegue sea lo más sencillo posible:
+Como valor agregado para la resolución de esta prueba técnica, la base de datos se encuentra provisionada en la nube usando MongoDB Atlas. Esto facilita la ejecución local, ya que no es necesario levantar contenedores de Docker ni configurar motores de base de datos; la aplicación se conectará automáticamente al servidor remoto.
 
-### Paso A: Levantar la Base de Datos (Docker)
-Asegúrate de tener Docker abierto y ejecuta:
-```bash
-docker-compose up -d
-```
-¿Qué hace esto? Crea un contenedor con MongoDB configurado y listo para recibir datos, sin que tengas que instalar la base de datos manualmente.
-
-### Paso B: Iniciar la API
-En la misma terminal, ejecuta:
+Para iniciar la API, simplemente abre tu terminal en la raíz del proyecto y ejecuta:
 
 ```bash
 ./mvnw spring-boot:run
@@ -79,8 +71,26 @@ La calidad del código está respaldada por pruebas unitarias. Para ejecutarlas 
 ```
 
 ---
+## 5. Monitoreo y Trazabilidad (Uptime Kuma)
 
-## 5. Contacto
+Para garantizar la alta disponibilidad del servicio, he incluido un contenedor de **Uptime Kuma**.
+* 5.1 Ejecuta `docker-compose up -d`.
+* 5.2 Accede a `http://localhost:3001` para ver el estado de salud de la API en tiempo real.
+
+---
+
+## 6. Decisiones de Arquitectura y Diseño 
+
+Para esta solución, no solo me enfoqué en cumplir los requisitos, sino en aplicar estándares de nivel empresarial:
+
+*   **Arquitectura Limpia (Hexagonal):** Dividí el proyecto en capas (*Domain, Application, Infrastructure*) para desacoplar la lógica de negocio de las herramientas externas. Esto permite, por ejemplo, cambiar la base de datos o el framework web sin tocar una sola línea de la lógica de las franquicias.
+*   **Programación Reactiva (Spring WebFlux):** Implementé un paradigma no bloqueante. A diferencia de las APIs tradicionales, esta arquitectura permite manejar miles de peticiones simultáneas con un consumo de memoria mínimo, ideal para sistemas de alta concurrencia.
+*   **Persistencia Híbrida Cloud:** Utilicé **MongoDB Atlas** para asegurar que los datos estén disponibles en la nube, cumpliendo con estándares de escalabilidad y alta disponibilidad.
+*   **Observabilidad:** Implementé **Spring Boot Actuator** y **Uptime Kuma** para demostrar cómo se gestiona un servicio en un entorno real de producción, monitoreando el estado de salud (*Health Checks*) constantemente.
+*   **Logging Estructurado:** Configuración de Logback para una trazabilidad clara y profesional en consola.
+
+---
+## 7. Contacto
 
 Si tienes dudas o comentarios no dudes en contactarme 
 
