@@ -14,4 +14,4 @@ Esta es una solución robusta basada en **Spring Boot** y **Clean Architecture**
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [URL]
+   git clone [https://github.com/Diegogv23/prueba-tecnica-franquicias.git]
