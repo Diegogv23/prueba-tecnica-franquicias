@@ -3,5 +3,5 @@ spring:
     name: franquicias
   data:
     mongodb:
-      uri: mongodb://localhost:27017/franquicias_db
+      uri: mongodb+srv://diegogv231200:qxPkQ4HYuvYhgoS9@cluster0.gkzwslv.mongodb.net/franquiciasDB?appName=Cluster0
       auto-index-creation: true

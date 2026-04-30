@@ -14,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/branches")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class BranchController {
 
     private final BranchUseCase branchUseCase;

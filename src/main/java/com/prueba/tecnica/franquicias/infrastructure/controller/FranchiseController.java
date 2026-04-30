@@ -18,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/franchises")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class FranchiseController {
 
     private final FranchiseUseCase franchiseUseCase;

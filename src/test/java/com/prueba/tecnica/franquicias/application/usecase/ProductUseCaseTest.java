@@ -16,10 +16,10 @@ import static org.mockito.Mockito.when;
 class ProductUseCaseTest {
 
     @Mock
-    private ProductRepositoryPort productPort; // Simulamos el puerto
+    private ProductRepositoryPort productPort;
 
     @InjectMocks
-    private ProductUseCase productUseCase; // Inyectamos el simulador en el caso de uso
+    private ProductUseCase productUseCase;
 
     @BeforeEach
     void setUp() {
@@ -27,16 +27,13 @@ class ProductUseCaseTest {
     }
 
     @Test
-    void agregarProducto_DeberiaRetornarProductoGuardado() {
-        // GIVEN (Dado que...)
-        Product producto = new Product("1", "Producto Test", 10, "sucursal-1");
-        when(productPort.guardar(any(Product.class))).thenReturn(Mono.just(producto));
+    void shouldSaveAndReturnProductSuccessfully() {
+        Product product = new Product("1", "Producto Test", 10, "sucursal-1");
+        when(productPort.guardar(any(Product.class))).thenReturn(Mono.just(product));
 
-        // WHEN (Cuando...)
-        Mono<Product> resultado = productUseCase.agregarProducto(producto);
+        Mono<Product> result = productUseCase.agregarProducto(product);
 
-        // THEN (Entonces...)
-        StepVerifier.create(resultado)
+        StepVerifier.create(result)
                 .expectNextMatches(p -> p.getName().equals("Producto Test") && p.getStock() == 10)
                 .verifyComplete();
     }
